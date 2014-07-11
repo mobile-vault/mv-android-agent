@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:paddingLeft="@dimen/relative_padding"
+    android:paddingRight="@dimen/relative_padding"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_border"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/padding_bottom"
+        android:layout_marginTop="@dimen/margin_top"
+        android:layout_marginBottom="@dimen/margin_top"
+        android:layout_centerInParent="true"
+      >
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/darker_gray"
+        android:fontFamily="@style/AppBaseTheme"
+        android:textSize="@dimen/welcome_textsize"
+        android:padding="@dimen/padding_text"
+        android:text="Welcome to MobileVault. For any query, you can contact the administrator at mdm@toppatch.com." />
+
+</LinearLayout>
+</RelativeLayout>

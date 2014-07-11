@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.toppatch.mv"
+    android:versionCode="2"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.sec.MDM_HW_CONTROL" />
+    <uses-permission android:name="android.permission.sec.MDM_SECURITY" />
+    <uses-permission android:name="android.permission.sec.MDM_LOCATION" />
+    <uses-permission android:name="android.permission.sec.MDM_SECURITY" />
+    <uses-permission android:name="android.permission.sec.MDM_APP_MGMT" />
+    <uses-permission android:name="android.permission.sec.MDM_WIFI" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+
+    <permission
+        android:name="com.toppatch.mv.gcm.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.toppatch.mv.permission.C2D_MESSAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.sec.MDM_BROWSER_SETTINGS" />
+    <uses-permission android:name="android.permission.sec.MDM_BLUETOOTH" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.sec.MDM_VPN" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.WRITE_GSERVICES"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" 
+        >
+        <activity
+            android:name="com.toppatch.mv.ui.activities.MainActivity"
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait" >
+           
+        </activity>
+        <activity android:name="com.toppatch.mv.ui.activities.LoginActivity" >
+        </activity>
+        <activity android:name="com.toppatch.mv.ui.activities.RegisterDeviceActivity" >
+        </activity>
+        <activity
+            android:name="com.toppatch.mv.ui.activities.WelcomeActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name="com.toppatch.mv.gcm.GCMActivity" >
+        </activity>
+
+        <receiver
+            android:name="com.toppatch.mv.samsung.TopPatchAdmin"
+            android:description="@string/description"
+            android:label="MobileVault"
+            android:permission="android.permission.BIND_DEVICE_ADMIN" >
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.toppatch.mv.gcm.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="com.toppatch.mv.gcm" />
+            </intent-filter>
+        </receiver>
+         
+        <activity android:name="com.toppatch.mv.ui.activities.TestActivity" >
+        
+        </activity>
+        <activity android:name="com.toppatch.mv.ui.activities.LoginActivity2" 
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.toppatch.mv.ui.activities.MessageActivity"
+            android:excludeFromRecents="true"
+            android:label="@null"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" >
+
+        </activity>
+
+        <!--
+        <receiver android:name="com.toppatch.mv.samsung.SamsungReceiver" >
+            <intent-filter>
+                <action android:name="android.app.enterprise.license.EnterpriseLicenseManager.ACTION_LICENSE_STATUS" />
+            </intent-filter>
+        </receiver>
+        -->
+
+
+        <activity
+            android:name="com.toppatch.mv.ui.activities.SplashScreenActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+       </activity>
+        
+        <service android:name="com.toppatch.mv.gcm.GcmIntentService" >
+        </service>
+
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+
+    </application>
+
+</manifest>

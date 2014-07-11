@@ -1,0 +1,44 @@
+package com.toppatch.mv.samsung.components.policies.roaming;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.app.enterprise.EnterpriseDeviceManager;
+import android.app.enterprise.RoamingPolicy;
+import android.content.Context;
+import android.util.Log;
+
+import com.toppatch.mv.Constants;
+import com.toppatch.mv.ReportServer;
+import com.toppatch.mv.samsung.components.Component;
+
+public class RoamingSyncComponent extends Component {
+
+	private static final String TAG = "RoamingSyncComponent";
+
+	public RoamingSyncComponent(Context context) {
+		super(context);
+	}
+
+	@Override
+	public void execute(JSONObject data) {
+		if(data!=null){
+			Log.d(TAG, "Executing "+data.toString());
+			try {
+				boolean enable = data.getBoolean(Constants.ROAMING_SYNC_ENABLE);
+				EnterpriseDeviceManager edm = getEdm();
+				if(edm!=null){
+					try{
+						RoamingPolicy roamingPolicy = edm.getRoamingPolicy();
+						roamingPolicy.setRoamingSync(enable);
+					}catch(Exception e){
+						ReportServer.e(TAG+data.toString()+e.toString());
+					}
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}		
+	}
+	
+}
